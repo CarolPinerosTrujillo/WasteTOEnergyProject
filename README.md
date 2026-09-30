@@ -33,7 +33,7 @@ python manage.py test
 Repositorio: https://github.com/CarolPinerosTrujillo/WasteTOEnergyProject
 
 - Build command: `pip install -r requirements.txt && python manage.py collectstatic --noinput`
-- Start command: `python manage.py migrate --noinput && gunicorn Biomasa.wsgi:application`
+- Start command: `python manage.py migrate --noinput && gunicorn Biomasa.wsgi:application --bind 0.0.0.0:$PORT`
 - Variables de entorno: `DEBUG=False`, `SECRET_KEY` (generada), `ALLOWED_HOSTS=.onrender.com`
 - El archivo `.python-version` fija Python 3.11.
 
