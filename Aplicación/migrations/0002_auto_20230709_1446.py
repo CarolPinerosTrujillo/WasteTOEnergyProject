@@ -1,10 +1,14 @@
+from pathlib import Path
+
 from django.db import migrations
 import csv
+
+FIXTURES_DIR = Path(__file__).resolve().parent.parent.parent / 'fixtures'
 
 def cargar_datos_residuos_agricolas(apps, schema_editor):
     residuos = apps.get_model('Aplicación', 'Residuos_agricolas')
 
-    with open('fixtures/residuos_agricolas.csv', encoding='utf-8') as archivo_csv:
+    with open(FIXTURES_DIR / 'residuos_agricolas.csv', encoding='utf-8') as archivo_csv:
         lector_csv = csv.reader(archivo_csv, delimiter=';')
         next(lector_csv)  # Saltar la primera fila (nombres de los campos)
 
@@ -15,7 +19,7 @@ def cargar_datos_residuos_agricolas(apps, schema_editor):
 def cargar_datos_rendimientos_agricolas(apps, schema_editor):
     rendimientos = apps.get_model('Aplicación', 'Rendimientos_agricolas')
 
-    with open('fixtures/rendimientos_agricolas.csv', encoding='utf-8') as archivo_csv:
+    with open(FIXTURES_DIR / 'rendimientos_agricolas.csv', encoding='utf-8') as archivo_csv:
         lector_csv = csv.reader(archivo_csv, delimiter=';')
         next(lector_csv) 
 
@@ -27,7 +31,7 @@ def cargar_datos_rendimientos_agricolas(apps, schema_editor):
 def cargar_datos_residuos_pecuarios(apps, schema_editor):
     residuos = apps.get_model('Aplicación', 'Residuos_pecuarios')
 
-    with open('fixtures/residuos_pecuarios.csv', encoding='utf-8') as archivo_csv:
+    with open(FIXTURES_DIR / 'residuos_pecuarios.csv', encoding='utf-8') as archivo_csv:
         lector_csv = csv.reader(archivo_csv, delimiter=';')
         next(lector_csv)  
 
@@ -38,7 +42,7 @@ def cargar_datos_residuos_pecuarios(apps, schema_editor):
 def cargar_datos_produccion_rsu(apps, schema_editor):
     residuos = apps.get_model('Aplicación', 'Produccion_rsu')
 
-    with open('fixtures/produccion_rsu.csv', encoding='utf-8') as archivo_csv:
+    with open(FIXTURES_DIR / 'produccion_rsu.csv', encoding='utf-8') as archivo_csv:
         lector_csv = csv.reader(archivo_csv, delimiter=';')
         next(lector_csv)  
 
@@ -49,7 +53,7 @@ def cargar_datos_produccion_rsu(apps, schema_editor):
 def cargar_datos_tipo_rsuo(apps, schema_editor):
     residuos = apps.get_model('Aplicación', 'Tipo_rsuo')
 
-    with open('fixtures/tipo_rsuo.csv', encoding='utf-8') as archivo_csv:
+    with open(FIXTURES_DIR / 'tipo_rsuo.csv', encoding='utf-8') as archivo_csv:
         lector_csv = csv.reader(archivo_csv, delimiter=';')
         next(lector_csv)  
 

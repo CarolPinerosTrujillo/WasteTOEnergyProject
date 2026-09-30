@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import JsonResponse
@@ -34,7 +36,7 @@ def viabilidad(request, proceso_id):
             elif form.region == 'orinoquia':
                 r_max = 10.49
             else:
-                r_max = 1.28
+                r_max = 6
             # Sabemos si es viable o no
             if form.distancia >= r_max:
                 proceso.resultado = 'inviable'
@@ -234,7 +236,7 @@ def rsu_pregunta(request, proceso_id):
 def rsu(request, proceso_id):
     proceso = Proceso.objects.get(id=proceso_id)
     if request.method == 'POST':
-        form1 = CantidadRSUFrom(request.POST)
+        form1 = CantidadRSUForm(request.POST)
         form2 = ResiduosRSUForm(request.POST)
         if form1.is_valid():
             cant_personas = form1.cleaned_data['cant_personas']
@@ -276,7 +278,7 @@ def rsu(request, proceso_id):
 
         return redirect('rsu', proceso_id)
     else:
-        form1 = CantidadRSUFrom()
+        form1 = CantidadRSUForm()
         form2 = ResiduosRSUForm()
 
     context = {
@@ -416,7 +418,7 @@ def Viabilidad_RT(proceso):   #PROCESO D1 - D2
     proceso.pot_tec_termo_planta = pot_tec_termo_planta
     proceso.pot_tec_termo = pot_tec_termo
 
-    cub_rt_termo = round((pot_tec_termo/proceso.edf)*100  ,5)
+    cub_rt_termo = round((pot_tec_termo/proceso.edf)*100  ,5) if proceso.edf else 0.0
     proceso.cub_rt_termo = cub_rt_termo
 
     if proceso.cub_rt_termo>=100 and proceso.pot_tec_termo_planta>=0.1:
@@ -450,7 +452,7 @@ def Viabilidad_RT(proceso):   #PROCESO D1 - D2
     proceso.pot_tec_bioq_planta = pot_tec_bioq_planta
     proceso.pot_tec_bioq = pot_tec_bioq
 
-    cub_rt_bioq = (pot_tec_bioq/proceso.edf)*100
+    cub_rt_bioq = (pot_tec_bioq/proceso.edf)*100 if proceso.edf else 0.0
     cub_rt_bioq = round(cub_rt_bioq, 5)
 
     proceso.cub_rt_bioq = cub_rt_bioq
@@ -519,7 +521,6 @@ def def_caso(proceso):
    
     
     proceso.save()
-    comentario_resultado(proceso)
 
 
 
@@ -529,6 +530,8 @@ def def_caso(proceso):
 
 
 def PROCESO_E1F1(proceso, punit): #RUTA TERMOQUIMICA
+    cap = []
+    proceso.tec_final = 'Ninguna'
 
     if punit >= 10:
         proceso.tec_final = 'Combustión - Ciclo Rankine Convencional accionado con turbina axial / Gasificación'
@@ -564,25 +567,16 @@ def PROCESO_E1F1(proceso, punit): #RUTA TERMOQUIMICA
     
     
 def PROCESO_E2F2(proceso, punit): #RUTA BIOQUIMICA
+    cap = []
+    proceso.tec_final = 'Ninguna'
 
     if punit >= 0.1:
         proceso.tec_final = 'Digestión anaerobia - generación de biogas - impulsor MCI'
         proceso.tipo3 = True
         cap=[0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0]
-        cap_serializado = json.dumps(cap)
-        proceso.cap_serializado = cap_serializado
-        proceso.cap = cap
-    else:
-        proceso.tec_final = 'Ninguna'
 
     # Serializar y almacenar la lista cap
-    cap_serializado = json.dumps(cap)
-    proceso.cap_serializado = cap_serializado
-
-    proceso.save()
-
-    # Deserializar la lista cap para usarla en otra función
-    proceso.cap = cap
+    proceso.cap_serializado = json.dumps(cap)
 
     proceso.save()
     return cap, proceso.tec_final
@@ -780,7 +774,6 @@ def comentario_resultado(proceso):
 def resultados(request,proceso_id): #RESULTADOS DEF_PUNIT
     proceso = Proceso.objects.get(id=proceso_id)
     def_caso(proceso)
-    comentario_resultado(proceso)
 
     suma_termo = proceso.total_pot_rt_termo_agri + proceso.total_pot_rt_termo_rsu
     suma_bioq = proceso.total_pot_rt_bioq_agri + proceso.total_pot_rt_bioq_pecu + proceso.total_pot_rt_bioq_rsuo
@@ -879,8 +872,8 @@ def resultados(request,proceso_id): #RESULTADOS DEF_PUNIT
     else:
         visual = False
 
+    comentario_resultado(proceso)
 
-    
     context = {
             'proceso': proceso,
             'visual': visual,

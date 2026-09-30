@@ -441,7 +441,7 @@
                     {% endif %}
 
 
-                    {% if proceso.tec_finaL == 'Combustión - Ciclo Rankine Convencional accionado con turbina axial' or proceso.tec_final1 == 'Combustión - Ciclo Rankine Convencional accionado con turbina axial' or proceso.tec_final2 == 'Combustión - Ciclo Rankine Convencional accionado con turbina axial' %} 
+                    {% if proceso.tec_final == 'Combustión - Ciclo Rankine Convencional accionado con turbina axial' or proceso.tec_final1 == 'Combustión - Ciclo Rankine Convencional accionado con turbina axial' or proceso.tec_final2 == 'Combustión - Ciclo Rankine Convencional accionado con turbina axial' %} 
                     
                         <p>
                         <strong>Combustión empleando Ciclo rankine convencional: </strong> La biomasa residual se quema para calentar agua y generar vapor en el ciclo Rankine convencional. El vapor de alta presión impulsa una turbina conectada a un generador que produce electricidad.
@@ -472,7 +472,7 @@
                     {% endif %}
 
 
-                    {% if proceso.tec_final == 'Combustión - Ciclo Rankine Orgánico accionado con turbina axial' or proceso.tec_final1 or proceso.tec_final2 == 'Combustión - Ciclo Rankine Orgánico accionado con turbina axial' %} 
+                    {% if proceso.tec_final == 'Combustión - Ciclo Rankine Orgánico accionado con turbina axial' or proceso.tec_final1 == 'Combustión - Ciclo Rankine Orgánico accionado con turbina axial' or proceso.tec_final2 == 'Combustión - Ciclo Rankine Orgánico accionado con turbina axial' %} 
                     
                         <p>
                             <strong>Combustión empleando Ciclo rankine orgánico: </strong> Es un proceso que involucra la transformación de la energía contenida en la biomasa en electricidad utilizando un ciclo termodinámico de tipo Rankine, pero con un fluido orgánico como medio de trabajo en lugar de agua, lo que permite que el cambio de fase líquido a vapor o punto de ebullición tenga lugar a temperaturas más bajas. Esto permite aprovechar la energía contenida en la biomasa para generar electricidad. 

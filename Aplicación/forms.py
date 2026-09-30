@@ -73,7 +73,7 @@ class ResiduosPecuariosForm(forms.Form):
             self.fields['tipo'] = forms.ChoiceField(choices=[('', 'Seleccione un tipo')] + [(tipo, tipo) for tipo in tipos])
             self.fields['tipo'].widget.attrs['class'] = 'custom-select'
 
-class CantidadRSUFrom(forms.Form):
+class CantidadRSUForm(forms.Form):
     cant_personas = forms.IntegerField(widget=forms.NumberInput(attrs={'min': 0,'class': 'custom-input'}))
 
     def __init__(self, *args, **kwargs):
