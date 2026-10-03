@@ -19,6 +19,16 @@ def inicio(request):
     return render(request, "inicio.html", context)
 
 
+def funcionamiento(request):
+    context = {}
+    return render(request, "funcionamiento.html", context)
+
+
+def fuentes(request):
+    context = {}
+    return render(request, "fuentes.html", context)
+
+
 def iniciar_proceso(request):
     proceso = Proceso.objects.create()
     return redirect('viabilidad', proceso.id)

@@ -6,6 +6,8 @@ from django.conf import settings
 urlpatterns = [
     path('', views.introduccion,  name="introduccion"),
     path('inicio/', views.inicio,  name="inicio"),
+    path('funcionamiento/', views.funcionamiento,  name="funcionamiento"),
+    path('fuentes/', views.fuentes,  name="fuentes"),
     path('iniciar_proceso/', views.iniciar_proceso,  name="iniciar_proceso"),
     path('viabilidad/<int:proceso_id>', views.viabilidad,  name="viabilidad"),
     path('agricola/<int:proceso_id>', views.agricola,  name="agricola"),

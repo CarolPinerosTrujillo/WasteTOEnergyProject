@@ -19,7 +19,7 @@ TEC_GASIFICACION = TEC_RANKINE_CONVENCIONAL + ' / Gasificación'
 class PaginasBasicasTests(TestCase):
 
     def test_paginas_de_presentacion(self):
-        for nombre in ('introduccion', 'inicio'):
+        for nombre in ('introduccion', 'inicio', 'funcionamiento', 'fuentes'):
             respuesta = self.client.get(reverse(nombre))
             self.assertEqual(respuesta.status_code, 200)
 

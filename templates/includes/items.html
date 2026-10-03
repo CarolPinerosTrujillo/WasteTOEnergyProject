@@ -13,5 +13,7 @@
             </div>
             <li><a {% if proceso.ed > 0 %} href="{% url 'demanda' proceso.id %}" {% endif %} class="{% if '/demanda/' in request.path %} active {% endif %}">3. Demanda Enérgetica</a></li>
             <li><a {% if proceso.rt_final == '' or None and proceso.id %} href="{% url 'resultados' proceso.id %}" {% endif %} class="{% if '/resultados/' in request.path %} active {% endif %}">4. Resultados</a></li>
+            <li><a href="{% url 'funcionamiento' %}" class="{% if '/funcionamiento/' in request.path %} active {% endif %}">¿Cómo funciona?</a></li>
+            <li><a href="{% url 'fuentes' %}" class="{% if '/fuentes/' in request.path %} active {% endif %}">Fuentes y Bibliografía</a></li>
         </ul>
     </div>

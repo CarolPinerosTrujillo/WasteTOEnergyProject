@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>¿Cómo funciona?</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+        {% include 'includes/header.html' %}
+
+        <div class="container">
+
+            {% include 'includes/items.html' %}
+
+            <div class="right">
+                <h1>¿Cómo funciona la herramienta?</h1>
+
+                <p>
+                    Esta herramienta acompaña el diseño de un Centro de Generación Distribuida (CGD) que aprovecha la
+                    biomasa residual disponible en una Zona No Interconectada (ZNI) de Colombia. El proceso se ejecuta
+                    en 4 pasos y al finalizar se obtiene una ruta tecnológica recomendada (termoquímica, bioquímica o
+                    híbrida), la tecnología específica, la cantidad de plantas necesarias y un comentario con la
+                    recomendación.
+                </p>
+
+                <h1>Los 4 pasos del proceso</h1>
+
+                <ol>
+                    <li>
+                        <strong>1. Viabilidad:</strong> se elige la región del centro de consumo y la distancia en km
+                        desde la biomasa hasta ese centro. El CGD solo se considera viable si la distancia es menor al
+                        radio máximo de la región:
+                        <ul>
+                            <li><strong>Región Pacífica:</strong> radio máximo de 6 km.</li>
+                            <li><strong>Región Amazónica:</strong> radio máximo de 7.84 km.</li>
+                            <li><strong>Región Orinoquía:</strong> radio máximo de 10.49 km.</li>
+                        </ul>
+                        Si la distancia iguala o supera el radio, el resultado es <strong>inviable</strong>.
+                    </li>
+                    <li>
+                        <strong>2. Biomasa residual:</strong> se ingresa la disponibilidad de residuos de las cuatro
+                        fuentes (se pueden combinar todas las que apliquen):
+                        <ul>
+                            <li><strong>2.1 Agrícola:</strong> cultivo, residuo y hectáreas.</li>
+                            <li><strong>2.2 Pecuaria:</strong> tipo de animal y cantidad.</li>
+                            <li><strong>2.3 RSU:</strong> masa de residuos sólidos urbanos.</li>
+                            <li><strong>2.4 RSUO:</strong> tipo y masa de residuos sólidos urbanos orgánicos.</li>
+                        </ul>
+                        Con estos datos se calcula el potencial energético y la cobertura de cada ruta tecnológica
+                        (termoquímica y bioquímica) para satisfacer la demanda.
+                    </li>
+                    <li>
+                        <strong>3. Demanda energética:</strong> se ingresa el número de habitantes del centro de
+                        consumo; con ello se estima la potencia requerida (pot_CGD) que el CGD debe cubrir.
+                    </li>
+                    <li>
+                        <strong>4. Resultados:</strong> la herramienta compara la cobertura de ambas rutas y asigna el
+                        <em>caso</em> del proyecto (ver tabla), define la ruta tecnológica final, la tecnología
+                        recomendada, la cantidad de plantas y el comentario con la recomendación.
+                    </li>
+                </ol>
+
+                <h1>Resultados posibles (casos)</h1>
+
+                <p>
+                    El resultado depende de qué tanto cubra la biomasa residual la potencia requerida con cada ruta
+                    tecnológica:
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Caso</th>
+                            <th>Condición</th>
+                            <th>Ruta tecnológica recomendada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>caso0</td>
+                            <td>No se requiere potencia adicional para el centro de consumo</td>
+                            <td>Ninguna</td>
+                        </tr>
+                        <tr>
+                            <td>caso1</td>
+                            <td>Termoquímica y bioquímica cubren el 100% de la demanda</td>
+                            <td>Bioquímica</td>
+                        </tr>
+                        <tr>
+                            <td>caso2</td>
+                            <td>Solo la termoquímica cubre el 100% de la demanda</td>
+                            <td>Termoquímica</td>
+                        </tr>
+                        <tr>
+                            <td>caso3</td>
+                            <td>Solo la bioquímica cubre el 100% de la demanda</td>
+                            <td>Bioquímica</td>
+                        </tr>
+                        <tr>
+                            <td>caso4</td>
+                            <td>Ninguna cubre sola el 100%, pero ambas superan el 50% combinadas</td>
+                            <td>Híbrida (ambas rutas)</td>
+                        </tr>
+                        <tr>
+                            <td>caso5</td>
+                            <td>Ninguna cubre el 100%, la bioquímica cubre más que la termoquímica</td>
+                            <td>Bioquímica</td>
+                        </tr>
+                        <tr>
+                            <td>caso6</td>
+                            <td>Ninguna cubre el 100%, la termoquímica cubre más que la bioquímica</td>
+                            <td>Termoquímica</td>
+                        </tr>
+                        <tr>
+                            <td>caso7</td>
+                            <td>No hay cobertura suficiente con ninguna ruta</td>
+                            <td>Ninguna</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h1>Cómo leer los resultados</h1>
+
+                <ul>
+                    <li><strong>Ruta tecnológica (RT):</strong> termoquímica (combustión/gasificación) o bioquímica (digestión anaerobia), según el caso.</li>
+                    <li><strong>Tecnología recomendada:</strong> por ejemplo, Ciclo Rankine convencional, Ciclo Rankine orgánico o gasificación.</li>
+                    <li><strong>Cantidad de plantas:</strong> número de plantas necesarias para asegurar la operación continua del sistema.</li>
+                    <li><strong>Comentario:</strong> recomendación generada con el resultado, incluyendo la potencia y el número de plantas.</li>
+                    <li><strong>Gráficas:</strong> la página de resultados muestra el comportamiento de la potencia y de la cobertura de las rutas.</li>
+                </ul>
+
+                <p>
+                    <strong>Nota:</strong> la herramienta es una guía de pre-diseño basada en bases de datos de
+                    referencia de biomasa residual en Colombia; los resultados deben contrastarse con un estudio
+                    técnico específico del caso.
+                </p>
+
+                <a href="{% url 'inicio' %}"><button class="button">EMPEZAR PROCESO</button></a>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>

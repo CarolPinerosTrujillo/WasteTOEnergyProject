@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Fuentes y Bibliografía</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body>
+        {% include 'includes/header.html' %}
+
+        <div class="container">
+
+            {% include 'includes/items.html' %}
+
+            <div class="right">
+                <h1>Fuentes y Bibliografía</h1>
+
+                <p>
+                    Esta página reúne los recursos que dieron origen a la herramienta y las fuentes de referencia que
+                    pueden consultarse para complementarla. Se mantendrá actualizada con nuevos aportes.
+                </p>
+
+                <h1>1. Trabajo de grado (origen del proyecto)</h1>
+
+                <p>
+                    <strong>PIÑEROS TRUJILLO, Carol.</strong> <em>Algoritmo para apoyar el diseño de centros de
+                    generación distribuida a partir de biomasa residual en ZNI de Colombia.</em> Trabajo de grado —
+                    Ingeniería Mecánica. Universidad Distrital Francisco José de Caldas, Facultad Tecnológica, Bogotá
+                    D.C., 2023.
+                </p>
+
+                <ul>
+                    <li><strong>Directora:</strong> Germán Arturo López Martínez.</li>
+                    <li><strong>Repositorio institucional:</strong>
+                        <a href="https://repository.udistrital.edu.co/items/08f20def-e6c7-4e5c-b383-f985891db842" target="_blank">
+                            repository.udistrital.edu.co — Algoritmo para apoyar el diseño de CGD...
+                        </a>
+                    </li>
+                    <li><strong>URI permanente:</strong> <a href="http://hdl.handle.net/11349/39704" target="_blank">http://hdl.handle.net/11349/39704</a></li>
+                    <li><strong>Palabras clave:</strong> Plantas de generación de energía, Zonas no interconectadas, Algoritmo, Biomasa residual.</li>
+                    <li><strong>Resumen:</strong> la generación de energía a partir de biomasa residual es un proceso
+                        complejo en el ámbito de la generación eléctrica del país, especialmente en las zonas no
+                        interconectadas (ZNI). En este trabajo de grado se desarrolla un algoritmo para apoyar el
+                        diseño de centrales de generación de energía a partir de biomasa residual en ZNI de Colombia.
+                        Se definen los procesos necesarios para llegar a dimensionar el sistema, utilizando bases de
+                        datos existentes de biomasa residual en Colombia, potenciales energéticos económicos y
+                        técnicos, y se obtienen las tecnologías y capacidades tecnológicas más recomendables.</li>
+                </ul>
+
+                <p>
+                    Esta aplicación web es la materialización del algoritmo descrito en el trabajo de grado, desarrollada
+                    de forma independiente por su autora.
+                </p>
+
+                <h1>2. Libro de referencia</h1>
+
+                <p>
+                    <strong>BURITICÁ-ARBOLEDA, C. I.; RAMÍREZ-ESCOBAR, C. A.; LÓPEZ MARTÍNEZ, G. A.; MORENO CHUQUEN,
+                    R.; MARTÍNEZ SARMIENTO, F. H.; ALDANA MÉNDEZ, F. A.; MARTÍNEZ, J.</strong>
+                    <em>Los recursos distribuidos de bioenergía en Colombia.</em> Bogotá D.C.: Universidad Distrital
+                    Francisco José de Caldas, Sistema de Libros de Investigación, Colección Doctorado en Ingeniería,
+                    30 de octubre de 2020.
+                </p>
+
+                <ul>
+                    <li><strong>ISBN-13:</strong> 978-958-787-258-3 · <strong>ISBN-10:</strong> 978-958-787-259-0</li>
+                    <li><strong>Libro completo (descarga gratuita):</strong>
+                        <a href="https://libros.udistrital.edu.co/index.php/invest/catalog/book/61" target="_blank">
+                            libros.udistrital.edu.co — Los recursos distribuidos de bioenergía en Colombia
+                        </a>
+                    </li>
+                    <li><strong>Licencia:</strong> Creative Commons Atribución-NoComercial-SinDerivadas 4.0 (CC BY-NC-ND 4.0).</li>
+                    <li><strong>Palabras clave:</strong> Energía biomásica, Distribución, Colombia, Biocombustibles.</li>
+                    <li><strong>Contenido:</strong> 6 capítulos + prólogo que abordan el sistema energético
+                        colombiano, los potenciales energéticos de la biomasa, las tecnologías de conversión de
+                        recursos distribuidos de bioenergía (termoquímicas y bioquímicas), los aspectos económicos y
+                        regulatorios, la inserción de la bioenergía en el sistema energético y las nuevas tecnologías
+                        para su gestión.</li>
+                    <li><strong>Sinopsis:</strong> con la previsión del aprovechamiento de los potenciales
+                        energéticos de 19 tipos de recursos distribuidos de bioenergía, Colombia podría disponer a
+                        2032 de 21.000 GWh (aproximadamente el 17% de participación en la matriz eléctrica),
+                        mitigando cerca de 12 millones de toneladas de CO<sub>2</sub>eq.</li>
+                    <li><strong>Relevancia para este proyecto:</strong> el Capítulo 3 (Tecnologías de Conversión de
+                        Recursos Distribuidos de Bioenergía) y el Capítulo 2 (Potenciales energéticos) son la base de
+                        las rutas tecnológicas y de los potenciales utilizados en la herramienta. Obra dirigida por el
+                        director de este trabajo de grado, a quien se agradece su acompañamiento.</li>
+                </ul>
+
+                <h1>3. Bases de datos del proyecto</h1>
+
+                <p>
+                    La herramienta carga bases de datos de referencia de biomasa residual en Colombia (incluidas en el
+                    repositorio como archivos CSV):
+                </p>
+
+                <ul>
+                    <li><code>rendimientos_agricolas.csv</code> — rendimientos por cultivo y departamento.</li>
+                    <li><code>residuos_agricolas.csv</code> — residuos por cultivo.</li>
+                    <li><code>residuos_pecuarios.csv</code> — residuos pecuarios por tipo de animal.</li>
+                    <li><code>produccion_rsu.csv</code> — producción de residuos sólidos urbanos.</li>
+                    <li><code>tipo_rsuo.csv</code> — tipos de residuos sólidos urbanos orgánicos.</li>
+                </ul>
+
+                <h1>4. Enlaces complementarios</h1>
+
+                <p>Organismos oficiales y documentos útiles para contrastar o ampliar los datos:</p>
+
+                <ul>
+                    <li>UPME — Unidad de Planeación Minero Energética: <a href="https://www.upme.gov.co" target="_blank">upme.gov.co</a></li>
+                    <li>DANE — Departamento Administrativo Nacional de Estadística: <a href="https://www.dane.gov.co" target="_blank">dane.gov.co</a></li>
+                    <li>IDEAM — Instituto de Hidrología, Meteorología y Estudios Ambientales: <a href="https://www.ideam.gov.co" target="_blank">ideam.gov.co</a></li>
+                    <li>Ministerio de Minas y Energía de Colombia: <a href="https://www.minenergia.gov.co" target="_blank">minenergia.gov.co</a></li>
+                    <li>Código de Redes y normativa CREG (autogeneración en ZNI): <a href="https://www.creg.gov.co" target="_blank">creg.gov.co</a></li>
+                </ul>
+
+                <p>
+                    ¿Tienes una fuente que deba estar aquí? Las sugerencias son bienvenidas en la sección de issues del
+                    <a href="https://github.com/CarolPinerosTrujillo/WasteTOEnergyProject" target="_blank">repositorio</a>.
+                </p>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
