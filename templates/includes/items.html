@@ -1,7 +1,8 @@
+{% load resumen_tags %}
 <div class="left">
         <ul class="list-group">
-            <li class="{% if '/' == request.path %} active {% endif %}">Introducción</li>
-            <li class="{% if '/inicio/' == request.path %} active {% endif %}">Inicio</li>
+            <li><a href="{% url 'introduccion' %}" class="{% if '/' == request.path %} active {% endif %}">Introducción</a></li>
+            <li><a href="{% url 'inicio' %}" class="{% if '/inicio/' == request.path %} active {% endif %}">Inicio</a></li>
             <li><a {% if proceso.id %} href="{% url 'viabilidad' proceso.id %}" {% endif %} class="{% if '/viabilidad/' in request.path %} active {% endif %}">1. Viabilidad</a></li>
 
             <li>2. Biomasa residual</li>
@@ -16,4 +17,5 @@
             <li><a href="{% url 'funcionamiento' %}" class="{% if '/funcionamiento/' in request.path %} active {% endif %}">¿Cómo funciona?</a></li>
             <li><a href="{% url 'fuentes' %}" class="{% if '/fuentes/' in request.path %} active {% endif %}">Fuentes y Bibliografía</a></li>
         </ul>
+        {% boton_reanudar %}
     </div>

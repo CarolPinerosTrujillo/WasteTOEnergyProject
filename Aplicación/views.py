@@ -31,11 +31,14 @@ def fuentes(request):
 
 def iniciar_proceso(request):
     proceso = Proceso.objects.create()
+    request.session['proceso_id'] = proceso.id
     return redirect('viabilidad', proceso.id)
 
 
 def viabilidad(request, proceso_id):
     proceso = Proceso.objects.get(id=proceso_id)
+    request.session['proceso_id'] = proceso.id
+    request.session['ultima_url'] = request.path
     if request.method == 'POST':
         form = ViabilidadForm(request.POST, instance=proceso)
         if form.is_valid():
@@ -81,6 +84,8 @@ def agricola_pregunta(request, proceso_id):
 
 def agricola(request, proceso_id):
     proceso = Proceso.objects.get(id=proceso_id)
+    request.session['proceso_id'] = proceso.id
+    request.session['ultima_url'] = request.path
     if request.method == 'POST':
         form = ResiduosAgricolasForm(request.POST, proceso=proceso)
         if form.is_valid():
@@ -177,6 +182,8 @@ def pecuaria_pregunta(request, proceso_id):
 
 def pecuaria(request, proceso_id):
     proceso = Proceso.objects.get(id=proceso_id)
+    request.session['proceso_id'] = proceso.id
+    request.session['ultima_url'] = request.path
     if request.method == 'POST':
         form = ResiduosPecuariosForm(request.POST)
         if form.is_valid():
@@ -245,6 +252,8 @@ def rsu_pregunta(request, proceso_id):
 
 def rsu(request, proceso_id):
     proceso = Proceso.objects.get(id=proceso_id)
+    request.session['proceso_id'] = proceso.id
+    request.session['ultima_url'] = request.path
     if request.method == 'POST':
         form1 = CantidadRSUForm(request.POST)
         form2 = ResiduosRSUForm(request.POST)
@@ -316,6 +325,8 @@ def rsuo_pregunta(request, proceso_id):
 
 def rsuo(request, proceso_id):
     proceso = Proceso.objects.get(id=proceso_id)
+    request.session['proceso_id'] = proceso.id
+    request.session['ultima_url'] = request.path
     if request.method == 'POST':
         form = ResiduosRSUOForm(request.POST)
         if form.is_valid():
@@ -356,6 +367,8 @@ def rsuo(request, proceso_id):
 
 def demanda(request, proceso_id):
     proceso = Proceso.objects.get(id=proceso_id)
+    request.session['proceso_id'] = proceso.id
+    request.session['ultima_url'] = request.path
     if request.method == 'POST':
         form1 = CantidadDemandaForm(request.POST)
         form2 = DemandaForm(request.POST)
@@ -783,6 +796,8 @@ def comentario_resultado(proceso):
 
 def resultados(request,proceso_id): #RESULTADOS DEF_PUNIT
     proceso = Proceso.objects.get(id=proceso_id)
+    request.session['proceso_id'] = proceso.id
+    request.session['ultima_url'] = request.path
     def_caso(proceso)
 
     suma_termo = proceso.total_pot_rt_termo_agri + proceso.total_pot_rt_termo_rsu

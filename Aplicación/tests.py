@@ -22,11 +22,34 @@ class PaginasBasicasTests(TestCase):
         for nombre in ('introduccion', 'inicio', 'funcionamiento', 'fuentes'):
             respuesta = self.client.get(reverse(nombre))
             self.assertEqual(respuesta.status_code, 200)
+            self.assertContains(respuesta, 'href="/"')
+            self.assertContains(respuesta, 'EMPEZAR PROCESO')
 
     def test_iniciar_proceso_crea_un_proceso(self):
         respuesta = self.client.post(reverse('iniciar_proceso'))
         self.assertEqual(respuesta.status_code, 302)
         self.assertEqual(Proceso.objects.count(), 1)
+
+    def test_boton_reanudar_tras_iniciar_proceso(self):
+        respuesta = self.client.post(reverse('iniciar_proceso'))
+        proceso_id = int(respuesta.url.rstrip('/').split('/')[-1])
+        self.assertEqual(self.client.session['proceso_id'], proceso_id)
+
+        respuesta = self.client.get(reverse('fuentes'))
+        self.assertContains(respuesta, 'Reanudar proceso')
+        self.assertContains(respuesta, f'/viabilidad/{proceso_id}')
+
+        respuesta = self.client.get(reverse('viabilidad', args=[proceso_id]))
+        self.assertEqual(self.client.session['ultima_url'], f'/viabilidad/{proceso_id}')
+
+    def test_boton_reanudar_sin_proceso_vuelve_a_empezar(self):
+        respuesta = self.client.post(reverse('iniciar_proceso'))
+        proceso_id = int(respuesta.url.rstrip('/').split('/')[-1])
+        Proceso.objects.get(id=proceso_id).delete()
+
+        respuesta = self.client.get(reverse('fuentes'))
+        self.assertContains(respuesta, 'EMPEZAR PROCESO')
+        self.assertNotContains(respuesta, 'Reanudar proceso')
 
 
 class ViabilidadTests(TestCase):
