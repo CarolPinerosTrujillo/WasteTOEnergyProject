@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Biomasa RSUO</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script defer src="{% static 'js/script.js' %}"></script>
 </head>
@@ -15,7 +16,7 @@
         {% include 'includes/items.html' %}
         <div class="right">
             {% if not proceso.rsuo %}
-            <h1> Módulo Residuos Sólidos Urbanos Organicos (RSUO)</h1>
+            <h1><img src="{% static 'RSUO.png' %}" alt=""> Módulo Residuos Sólidos Urbanos Organicos (RSUO)</h1>
             <form action="{% url 'rsuo_pregunta' proceso.id %}" method="post">
                 {% csrf_token %}
                 <div class="inputs">

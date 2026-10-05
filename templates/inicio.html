@@ -4,7 +4,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Inicio</title>
+  <title>Procedimiento</title>
+  <link rel="icon" href="{% static 'favicon.ico' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
@@ -13,7 +14,7 @@
   <div class="container">
     {% include 'includes/items.html' %}
     <div class="right">
-      <h1>Descripción del programa</h1>
+      <h1><img src="{% static 'procedimiento.png' %}" alt=""> Descripción del programa</h1>
       <p> Este programa es una herramienta pensada en el apoyo al diseño de centros de generación Distribuida en las ZNI de Colombia, a partir de los recursos disponibles como es Biomasa residual. Esto incluye residuos de tipo agrícola, pecuario, residuos sólidos urbanos inorgánicos (Considerados secos) y orgánicos (húmedos). De acuerdo con los datos ingresados de la biomasa residual disponible y demanda energética del centro de consumo se da un resultado del cubrimiento energético posible a obtener, las tecnologías a emplear, potencia y cantidad de plantas obtenidas con los recursos disponibles.  <br>
         Este programa se desarrolla de forma secuencial, por esto se describen los pasos que se realizan para la
         obtención de resultados: </p>

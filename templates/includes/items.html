@@ -1,21 +1,22 @@
+{% load static %}
 {% load resumen_tags %}
 <div class="left">
         <ul class="list-group">
-            <li><a href="{% url 'introduccion' %}" class="{% if '/' == request.path %} active {% endif %}">Introducción</a></li>
-            <li><a href="{% url 'inicio' %}" class="{% if '/inicio/' == request.path %} active {% endif %}">Inicio</a></li>
-            <li><a {% if proceso.id %} href="{% url 'viabilidad' proceso.id %}" {% endif %} class="{% if '/viabilidad/' in request.path %} active {% endif %}">1. Viabilidad</a></li>
+            <li><a href="{% url 'introduccion' %}" class="{% if '/' == request.path %} active {% endif %}"><img src="{% static 'introduccion.png' %}" alt="">Introducción</a></li>
+            <li><a href="{% url 'funcionamiento' %}" class="{% if '/funcionamiento/' in request.path %} active {% endif %}"><img src="{% static 'casos_posibles.png' %}" alt="">Casos posibles</a></li>
+            <li><a href="{% url 'inicio' %}" class="{% if '/inicio/' == request.path %} active {% endif %}"><img src="{% static 'procedimiento.png' %}" alt="">Procedimiento</a></li>
+            <li><a {% if proceso.id %} href="{% url 'viabilidad' proceso.id %}" {% endif %} class="{% if '/viabilidad/' in request.path %} active {% endif %}"><img src="{% static 'viabilidad_region.png' %}" alt="">1. Viabilidad por región</a></li>
 
             <li>2. Biomasa residual</li>
             <div class="items_biomasa">
-            <li><a {% if proceso.id %} href="{% url 'agricola' proceso.id %}" {% endif %} class="{% if '/agricola/' in request.path %} active {% endif %}">2.1 Agrícola</a></li>
-            <li><a {% if proceso.id %} href="{% url 'pecuaria' proceso.id %}" {% endif %} class="{% if '/pecuaria/' in request.path %} active {% endif %}">2.2 Pecuaria</a></li>
-            <li><a {% if proceso.id %} href="{% url 'rsu' proceso.id %}" {% endif %} class="{% if '/rsu/' in request.path %} active {% endif %}">2.3 RSU</a></li>
-            <li><a {% if proceso.id %} href="{% url 'rsuo' proceso.id %}" {% endif %} class="{% if '/rsuo/' in request.path %} active {% endif %}">2.4 RSUO</a></li>
+            <li><a {% if proceso.id %} href="{% url 'agricola' proceso.id %}" {% endif %} class="{% if '/agricola/' in request.path %} active {% endif %}"><img src="{% static 'agricola.png' %}" alt="">2.1 Agrícola</a></li>
+            <li><a {% if proceso.id %} href="{% url 'pecuaria' proceso.id %}" {% endif %} class="{% if '/pecuaria/' in request.path %} active {% endif %}"><img src="{% static 'pecuaria.png' %}" alt="">2.2 Pecuaria</a></li>
+            <li><a {% if proceso.id %} href="{% url 'rsu' proceso.id %}" {% endif %} class="{% if '/rsu/' in request.path %} active {% endif %}"><img src="{% static 'RSU.png' %}" alt="">2.3 RSU</a></li>
+            <li><a {% if proceso.id %} href="{% url 'rsuo' proceso.id %}" {% endif %} class="{% if '/rsuo/' in request.path %} active {% endif %}"><img src="{% static 'RSUO.png' %}" alt="">2.4 RSUO</a></li>
             </div>
-            <li><a {% if proceso.ed > 0 %} href="{% url 'demanda' proceso.id %}" {% endif %} class="{% if '/demanda/' in request.path %} active {% endif %}">3. Demanda Enérgetica</a></li>
-            <li><a {% if proceso.rt_final == '' or None and proceso.id %} href="{% url 'resultados' proceso.id %}" {% endif %} class="{% if '/resultados/' in request.path %} active {% endif %}">4. Resultados</a></li>
-            <li><a href="{% url 'funcionamiento' %}" class="{% if '/funcionamiento/' in request.path %} active {% endif %}">¿Cómo funciona?</a></li>
-            <li><a href="{% url 'fuentes' %}" class="{% if '/fuentes/' in request.path %} active {% endif %}">Fuentes y Bibliografía</a></li>
+            <li><a {% if proceso.ed > 0 %} href="{% url 'demanda' proceso.id %}" {% endif %} class="{% if '/demanda/' in request.path %} active {% endif %}"><img src="{% static 'demanda_energetica.png' %}" alt="">3. Demanda Enérgetica</a></li>
+            <li><a {% if proceso.rt_final == '' or None and proceso.id %} href="{% url 'resultados' proceso.id %}" {% endif %} class="{% if '/resultados/' in request.path %} active {% endif %}"><img src="{% static 'resultados.png' %}" alt="">4. Resultados</a></li>
+            <li><a href="{% url 'fuentes' %}" class="{% if '/fuentes/' in request.path %} active {% endif %}"><img src="{% static 'fuentes.png' %}" alt="">Fuentes y Bibliografía</a></li>
         </ul>
         {% boton_reanudar %}
     </div>

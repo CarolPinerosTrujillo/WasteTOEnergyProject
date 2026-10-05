@@ -255,3 +255,28 @@ thead {
     background-color: #828282;
     /* Rojo */
 }
+
+/* Imagen del encabezado (navbar) */
+header h1 img {
+    height: 46px;
+    vertical-align: middle;
+    margin-right: 14px;
+}
+
+/* Miniaturas del menú lateral */
+.left li a img {
+    height: 20px;
+    width: 20px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+/* Imágenes junto a los títulos de sección */
+.right h1 img {
+    height: 26px;
+    width: 26px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 8px;
+}

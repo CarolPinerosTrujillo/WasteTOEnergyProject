@@ -24,6 +24,10 @@ class PaginasBasicasTests(TestCase):
             self.assertEqual(respuesta.status_code, 200)
             self.assertContains(respuesta, 'href="/"')
             self.assertContains(respuesta, 'EMPEZAR PROCESO')
+            self.assertContains(respuesta, 'rel="icon"')
+            self.assertContains(respuesta, 'Casos posibles')
+            self.assertContains(respuesta, 'Procedimiento')
+            self.assertContains(respuesta, 'Viabilidad por región')
 
     def test_iniciar_proceso_crea_un_proceso(self):
         respuesta = self.client.post(reverse('iniciar_proceso'))

@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Biomasa Residual Pecuaria</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
@@ -14,7 +15,7 @@
         {% include 'includes/items.html' %}
         <div class="right">
             {% if not proceso.pecuaria %}
-            <h1>Pecuaria</h1>
+            <h1><img src="{% static 'pecuaria.png' %}" alt=""> Pecuaria</h1>
             <form action="{% url 'pecuaria_pregunta' proceso.id %}" method="post">
                 {% csrf_token %}
                 <div class="inputs">

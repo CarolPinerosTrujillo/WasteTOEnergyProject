@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Demanda Energética</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script defer src="{% static 'js/script.js' %}"></script>
 </head>
@@ -16,7 +17,7 @@
         <div class="right">
             <div class="container-biomasa">
                 <div>
-                    {% if proceso.ed <= 0 %} <h1>Demanda Energética</h1>
+                    {% if proceso.ed <= 0 %} <h1><img src="{% static 'demanda_energetica.png' %}" alt=""> Demanda Energética</h1>
                         <div class="inputs">
                             <p> La demanda energética de un centro de consumo abarca toda la energía necesaria para
                                 cubrir todas sus actividades y procesos

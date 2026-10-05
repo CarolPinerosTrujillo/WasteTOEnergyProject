@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Biomasa Agrícola</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
@@ -15,7 +16,7 @@
         <div class="right">
             {% if not proceso.agricola and proceso.total_hectareas <= 0 %} 
             
-            <h1>Módulo Biomasa residual Agrícola</h1>
+            <h1><img src="{% static 'agricola.png' %}" alt=""> Módulo Biomasa residual Agrícola</h1>
 
             <p> En módulo Agrícola se determina la masa de residuo disponible y el Potencial energético de la
                 biomasa residual agrícola. <br>
