@@ -107,8 +107,13 @@ Repositorio: https://github.com/CarolPinerosTrujillo/WasteTOEnergyProject
 - El archivo `.python-version` fija Python 3.11.
 
 Cada `push` a `main` publica los cambios automáticamente.
-Un workflow de GitHub Actions (`.github/workflows/keep-alive.yml`) hace ping cada 10 minutos
-para que el sitio no se duerma en el plan gratuito.
+
+Un workflow de GitHub Actions (`.github/workflows/keep-alive.yml`) mantiene el sitio despierto
+**solo de 07:00 a 23:00 (hora Bogotá)** con un ping cada 10 minutos (~490 h/mes de las 750 h
+gratis del plan Free). Fuera de ese horario el servicio duerme para ahorrar horas; despertar
+toma ~1 minuto. Si el sitio está dormido o suspendido, el workflow muestra un warning pero no
+falla. Nota: GitHub desactiva los workflows programados tras 60 días sin actividad en el repo
+(reactivarlos desde la pestaña Actions).
 
 ## Fuentes y bibliografía
 
